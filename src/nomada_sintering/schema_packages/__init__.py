@@ -6,7 +6,7 @@ class NewSchemaPackageEntryPoint(SchemaPackageEntryPoint):
     parameter: int = Field(0, description='Custom configuration parameter')
 
     def load(self):
-        from nomad_sintering.schema_packages.schema_package import m_package
+        from nomada_sintering.schema_packages.schema_package import m_package
 
         return m_package
 
@@ -19,7 +19,7 @@ schema_package_entry_point = NewSchemaPackageEntryPoint(
 class SinteringEntryPoint(SchemaPackageEntryPoint):
 
     def load(self):
-        from nomad_sintering.schema_packages.sintering import m_package
+        from nomada_sintering.schema_packages.sintering import m_package
 
         return m_package
 
