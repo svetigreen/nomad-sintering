@@ -16,6 +16,9 @@
 # limitations under the License.
 #
 
+import pandas as pd
+from nomad.units import ureg
+
 from typing import (
     TYPE_CHECKING,
 )
@@ -102,6 +105,14 @@ class Sintering(Process, EntryData, ArchiveSection):
         repeats=True,
     )
 
+    data_file = Quantity(
+        type = str,
+        description = 'The recipe file for the sintering process.',
+        a_eln = {
+            "component": "FileEditQuantity",
+        },
+    )
+
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         '''
         The normalizer for the `Sintering` class.
@@ -112,6 +123,21 @@ class Sintering(Process, EntryData, ArchiveSection):
             logger (BoundLogger): A structlog logger.
         '''
         super().normalize(archive, logger)
+
+        if self.data_file:
+            with archive.m_context.raw_file(self.data_file) as file:
+                df = pd.read_csv(file)
+
+            steps = []
+            for i, row in df.iterrows():
+                step = TemperatureRamp()
+                step.name = row['step name']
+                step.duration = ureg.Quantity(float(row['duration [min]']), 'min')
+                step.initial_temperature = ureg.Quantity(row['initial temperature [C]'], 'celsius')
+                step.final_temperature = ureg.Quantity(row['final temperature [C]'], 'celsius')
+                steps.append(step)
+
+            self.steps = steps
 
 
 m_package.__init_metainfo__()

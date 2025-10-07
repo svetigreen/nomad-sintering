@@ -112,7 +112,7 @@ where = ["src"]
 
 [project.entry-points.'nomad.plugin']
 
-schema_package_entry_point = "nomad_sintering.schema_packages:schema_package_entry_point"
+schema_package_entry_point = "nomada_sintering.schema_packages:schema_package_entry_point"
 sintering = "nomada_sintering.schema_packages:sintering"
 
 
