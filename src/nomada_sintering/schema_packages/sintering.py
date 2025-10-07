@@ -31,7 +31,7 @@ from nomad.datamodel.data import (
 from nomad.datamodel.metainfo.basesections import Process, ProcessStep
 from nomad.metainfo import (
     Quantity,
-    SchemaPackage,
+    Package,
     Section,
     SubSection,
 )
@@ -44,7 +44,7 @@ if TYPE_CHECKING:
         BoundLogger,
     )
 
-m_package = SchemaPackage(name='Tutorial 13 sintering schema')
+m_package = Package(name='Tutorial 13 sintering schema')
 
 
 class TemperatureRamp(ProcessStep, ArchiveSection):
