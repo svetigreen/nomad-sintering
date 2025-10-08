@@ -32,7 +32,7 @@ class NewSchemaPackage(Schema):
         cfg = None
         try:
             cfg = config.get_plugin_entry_point(
-                'sintering.schema_packages:schema_package_entry_point',  # <- ID, nicht Modulpfad
+                'sintering.schema_packages:schema_package_entry_point',
                 raise_not_found=False
             )
         except Exception:
