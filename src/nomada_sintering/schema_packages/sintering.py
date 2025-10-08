@@ -117,7 +117,9 @@ class Sintering(Process, EntryData, ArchiveSection):
             for i, row in df.iterrows():
                 step = TemperatureRamp()
                 step.name = row['step name']
-                step.duration = ureg.Quantity(float(row['duration [min]']), 'min')
+                step.duration = ureg.Quantity(
+                    float(row['duration [min]']),
+                    'minutes')
                 step.initial_temperature = ureg.Quantity(
                     row['initial temperature [C]'],
                     'celsius')
