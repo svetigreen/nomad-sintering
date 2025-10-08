@@ -2,6 +2,11 @@ from typing import (
     TYPE_CHECKING,
 )
 
+from nomad.config import config
+from nomad.datamodel.data import Schema
+from nomad.datamodel.metainfo.annotations import ELNAnnotation, ELNComponentEnum
+from nomad.metainfo import Package, Quantity
+
 if TYPE_CHECKING:
     from nomad.datamodel.datamodel import (
         EntryArchive,
@@ -10,19 +15,13 @@ if TYPE_CHECKING:
         BoundLogger,
     )
 
-from nomad.metainfo import Package
-from nomad.config import config
-from nomad.datamodel.data import Schema
-from nomad.datamodel.metainfo.annotations import ELNAnnotation, ELNComponentEnum
-from nomad.metainfo import Quantity, SchemaPackage
-
-
 m_package = Package(name='sintering')
 
 
 class NewSchemaPackage(Schema):
     name = Quantity(
-        type=str, a_eln=ELNAnnotation(component=ELNComponentEnum.StringEditQuantity)
+        type=str,
+        a_eln=ELNAnnotation(component=ELNComponentEnum.StringEditQuantity)
     )
     message = Quantity(type=str)
 
