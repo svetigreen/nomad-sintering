@@ -109,11 +109,15 @@ package-dir = { "" = "src" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["nomada_sintering*"]
 
 [project.entry-points.'nomad.plugin']
 
-schema_package_entry_point = "nomada_sintering.schema_packages.schema_package:schema_package_entry_point"
-sintering = "nomada_sintering.schema_packages.sintering:sintering"
+#schema_package_entry_point = "nomada_sintering.schema_packages.schema_package:schema_package_entry_point"
+#sintering = "nomada_sintering.schema_packages.sintering:sintering"
+"sintering.schema_packages:schema_package_entry_point" = "nomada_sintering.schema_packages:schema_package_entry_point"
+"sintering.schema_packages:sintering" = "nomada_sintering.schema_packages:sintering"
+
 
 
 
