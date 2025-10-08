@@ -44,7 +44,7 @@ if TYPE_CHECKING:
         BoundLogger,
     )
 
-m_package = Package(name='Tutorial 13 sintering schema')
+m_package = Package(name='sintering')
 
 
 class TemperatureRamp(ProcessStep, ArchiveSection):
